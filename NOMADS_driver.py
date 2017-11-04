@@ -5,7 +5,7 @@ import os
 from NOMADS_pipeline import pipeline
 from NOMADS_io import load_file, dump_file
 from werkzeug.utils import secure_filename
-from flask import Flask, render_template, redirect, url_for, session, flash, request, send_file
+from flask import Flask, render_template, redirect, url_for, session, request, send_file
 
 
 UPLOAD_FOLDER = './static/uploads'
@@ -32,7 +32,7 @@ def index():
 
     if request.method == 'POST':
         if 'file' not in request.files:
-            return redirect(url_for(index))
+            return redirect(url_for('index'))
         my_file = request.files['file']
         filename = os.path.join(app.config['UPLOAD_FOLDER'],
                                 secure_filename(my_file.filename))
@@ -43,9 +43,6 @@ def index():
 
 @app.route('/launch_pipeline', methods=['GET'])
 def launch_pipeline():
-    if not 'input_data_path' in session.keys():
-        return redirect(url_for('index'))
-
     input_data = None
     try:
         input_data = load_file(session['input_data_path'])
@@ -64,8 +61,10 @@ def launch_pipeline():
 @app.route('/results')
 def results():
     return send_file(session['output_data_path'],
-                     attachment_filename='NOMADS_output.tiff')
+                     attachment_filename='NOMADS_output.tiff',
+                     mimetype='image/tiff')
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0',
+            port=5000)

@@ -1,13 +1,18 @@
 <html>
 
   <head>
+    <link href='/static/css/style.css' rel='stylesheet'>
   </head>
 
   <body>
-    <p>Upload New File</p>
+    <h1 class='titletext'>NOMADS</h1>
+    <h4 class='subtitletext'>Neurodata's Opensource Method for Autonomous Detection of Synapses</h4>
     <form method=post enctype=multipart/form-data>
-      <p><input type=file name=file></p>
-         <input type=submit value='Launch NOMADS'>
+      <input type='file' id='files' style='visibility:hidden'/>
+      <p style='padding:0px; margin:0px;'></p>
+      <label for="files" class='uploadbutton'>Select file</label>
+      <p style='padding:0px; margin:0px;'></p>
+      <input type=submit value='Launch NOMADS' class='uploadbutton'>
     </form>
   </body>
 
