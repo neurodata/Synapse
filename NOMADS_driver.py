@@ -61,8 +61,7 @@ def launch_pipeline():
 @app.route('/results')
 def results():
     return send_file(session['output_data_path'],
-                     attachment_filename='NOMADS_output.tiff',
-                     mimetype='image/tiff')
+                     attachment_filename='NOMADS_output.tiff')
 
 
 if __name__ == '__main__':
