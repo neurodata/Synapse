@@ -9,11 +9,11 @@ then
 fi
 docker run -d -p5000:5000 bstadt/nomads_deploy
 sleep 10s
-if uname -a | grep -q Mac;
+if uname -a | grep -q Darwin;
 then
   open http://0.0.0.0:5000
 fi
-if uname -a | grep -q Ubuntu;
+if uname -a | grep -q Linux;
 then
   xdg-open http://0.0.0.0:5000
 fi
